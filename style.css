@@ -1,0 +1,352 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    height: 100%;
+    font-family: Segoe UI, Tahoma, sans-serif;
+    background: #808080;
+}
+
+#app {
+    max-width: 1100px;
+    margin: auto;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .25);
+    overflow: hidden;
+}
+
+/* ===== Header ===== */
+header {
+    background: #465ff6;
+    color: #ffffff;
+    padding: 0.75rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 100%;
+    z-index: 1000;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: .5px;
+}
+
+#desktopNav {
+    display: flex;
+    gap: 0.75rem;
+}
+
+#desktopNav a,
+#desktopNav button {
+    background: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.45rem 0.9rem;
+    color: #000000;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background .25s, color .25s, transform .2s;
+}
+
+#desktopNav a:hover,
+#desktopNav button:hover,
+#desktopNav a:focus,
+#desktopNav button:focus {
+    background: #808080;
+    color: #ffffff;
+    outline: none;
+    transform: translateY(-2px);
+}
+
+#hamburger {
+    display: none;
+    font-size: 1.9rem;
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    transition: transform .25s;
+}
+
+#hamburger:hover,
+#hamburger:focus {
+    transform: scale(1.2);
+}
+
+@media (max-width: 678px) {
+    #desktopNav {
+        display: none;
+    }
+
+    #hamburger.show {
+        display: block;
+    }
+}
+
+/* ===== Sidebar ===== */
+#sidebar {
+    position: fixed;
+    top: 56px;
+    right: -260px;
+    width: 260px;
+    height: calc(100vh - 56px);
+    background: #000000;
+    color: #ffffff;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, .4);
+    padding: 1rem 0 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: right .3s ease;
+    z-index: 999;
+}
+
+#sidebar.open {
+    right: 0;
+}
+
+#sidebar a,
+#sidebar button {
+    background: none;
+    border: none;
+    color: #ffffff;
+    text-align: left;
+    padding: .8rem 1.4rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background .25s, padding-left .25s;
+}
+
+#sidebar a:hover,
+#sidebar button:hover,
+#sidebar a:focus,
+#sidebar button:focus {
+    background: #465ff6;
+    padding-left: 1.8rem;
+    outline: none;
+}
+
+#sidebar .closeBtn {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background: #465ff6;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: .55rem 1.1rem;
+    font-weight: 700;
+    transition: background .25s;
+}
+
+#sidebar .closeBtn:hover,
+#sidebar .closeBtn:focus {
+    background: #808080;
+    outline: none;
+}
+
+/* ===== Main content ===== */
+main {
+    flex: 1;
+    padding: 1.5rem 2rem;
+    background: #ffffff;
+    margin-top: 56px;
+    overflow: auto;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+    animation: fadeIn .25s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+/* ===== Login ===== */
+#loginForm {
+    max-width: 340px;
+    margin: 4% auto;
+    background: #ffffff;
+    padding: 2rem 1.8rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, .2);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#loginForm h2 {
+    margin-top: 0;
+    color: #000000;
+    text-align: center;
+}
+
+#loginForm label {
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+    color: #000000;
+    gap: 0.3rem;
+}
+
+#loginForm input,
+#loginForm select {
+    padding: 0.55rem;
+    border: 1px solid #808080;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color .25s, box-shadow .25s;
+}
+
+#loginForm input:focus,
+#loginForm select:focus {
+    border-color: #465ff6;
+    box-shadow: 0 0 5px #465ff6;
+    outline: none;
+}
+
+#loginForm button {
+    padding: 0.65rem;
+    background: #465ff6;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    transition: background .25s, transform .2s;
+}
+
+#loginForm button:hover,
+#loginForm button:focus {
+    background: #808080;
+    transform: translateY(-2px);
+    outline: none;
+}
+
+#loginError {
+    color: #465ff6;
+    font-weight: 700;
+    text-align: center;
+    margin-top: .5rem;
+}
+
+/* ===== Shared Controls ===== */
+textarea,
+input,
+button {
+    font-family: inherit;
+}
+
+textarea {
+    width: 100%;
+    min-height: 120px;
+    resize: vertical;
+    border: 1px solid #808080;
+    border-radius: 6px;
+    padding: .6rem;
+    transition: border-color .25s, box-shadow .25s;
+}
+
+textarea:focus {
+    border-color: #465ff6;
+    box-shadow: 0 0 5px #465ff6;
+    outline: none;
+}
+
+button.action {
+    background: #465ff6;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: .6rem 1.2rem;
+    font-weight: 700;
+    transition: background .25s, transform .2s;
+}
+
+button.action:hover,
+button.action:focus {
+    background: #808080;
+    transform: translateY(-2px);
+    outline: none;
+}
+
+/* ===== User list ===== */
+#userList {
+    margin-top: 1rem;
+}
+
+#userList div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #808080;
+    padding: 0.4rem 0;
+    gap: .4rem;
+    flex-wrap: wrap;
+}
+
+#userList div span {
+    font-weight: 600;
+    color: #000000;
+}
+
+#userList div button {
+    background: #465ff6;
+    border: none;
+    border-radius: 4px;
+    padding: 0.3rem 0.6rem;
+    font-size: .85rem;
+    color: #ffffff;
+    font-weight: 600;
+    transition: background .25s;
+}
+
+#userList div button:hover,
+#userList div button:focus {
+    background: #808080;
+    outline: none;
+}
+
+/* ===== Level list ===== */
+#levelList li {
+    list-style: none;
+    padding: 0.4rem 0;
+    cursor: pointer;
+    border-bottom: 1px solid #808080;
+    color: #000000;
+    transition: background .2s, padding-left .2s;
+}
+
+#levelList li:hover,
+#levelList li:focus {
+    background: #465ff6;
+    color: #ffffff;
+    padding-left: 0.5rem;
+    outline: none;
+}
